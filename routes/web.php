@@ -23,7 +23,7 @@ Route::get('/admin', function(){
     $users = \App\Models\User::all()->where('role', 0);
 
     return view('admin', ['users'=>$users]);
-});
+})->name('admin')->middleware('DayOfWeek');
 
 Route::get('/flights', function(){
     $flights = \App\Models\Flight::select('*')->where('date', '>=', Carbon::now())->orderBy('date', 'asc')->get();
